@@ -247,6 +247,9 @@ func (a aeroSpikeClient) GetBalanceByAddress(address string) (float64, error) {
 	if err != nil {
 		return -1.0, err
 	}
+	if record == nil {
+		return 0.0, nil
+	}
 
 	bal, err := binMapToBalance(record)
 	if err != nil {
