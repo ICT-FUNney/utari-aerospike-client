@@ -259,6 +259,35 @@ func (a aeroSpikeClient) GetBalanceByAddress(address string) (float64, error) {
 	return bal.Balance, nil
 }
 
+func (a aeroSpikeClient) PutUnsettled(address string, unsettled float64) error {
+	key, err := getUnsettledKey(address)
+	bal := Unsettled{Address: address, Unsettled: unsettled}
+	data := unsettledToBinMap(bal)
+	err = a.client.Put(nil, key, data)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a aeroSpikeClient) GetUnsettled(address string) (float64, error) {
+	key, err := getUnsettledKey(address)
+	record, err := a.client.Get(nil, key)
+	if err != nil {
+		return -1.0, err
+	}
+	if record == nil {
+		return 0.0, nil
+	}
+
+	uns, err := binMapToUnsettled(record)
+	if err != nil {
+		return -1.0, err
+	}
+
+	return uns.Unsettled, nil
+}
+
 func (a aeroSpikeClient) Close() {
 	a.client.Close()
 }

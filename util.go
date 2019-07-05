@@ -40,6 +40,16 @@ func getBalanceKey(address string) (*aero.Key, error) {
 	return key, nil
 }
 
+func getUnsettledKey(address string) (*aero.Key, error) {
+	namespace := GetAerospikeNamespace()
+	table := "unsettled"
+	key, err := aero.NewKey(namespace, table, address)
+	if err != nil {
+		return nil, err
+	}
+	return key, nil
+}
+
 // GetHash はkeyとして利用するhash値を取得する関数
 func GetHash(v interface{}) string {
 	// 構造体を[]byteに変換
@@ -260,5 +270,34 @@ func balanceToBinMap(b Balance) aero.BinMap {
 	return aero.BinMap{
 		"Address": b.Address,
 		"Balance": b.Balance,
+	}
+}
+
+func binMapToUnsettled(record *aero.Record) (Unsettled, error) {
+	var unsettled Unsettled
+	binMap := record.Bins
+
+	unsettledFloat, ok := binMap["Unsettled"].(float64)
+	if !ok {
+		unsettledInt, ok := binMap["Unsettled"].(int)
+		if !ok {
+			return Unsettled{}, fmt.Errorf("failed Unssetled assertion")
+		}
+		unsettledFloat = float64(unsettledInt)
+	}
+	unsettled.Unsettled = unsettledFloat
+
+	address, ok := binMap["Address"].(string)
+	if !ok {
+		return Unsettled{}, fmt.Errorf("failed Address assertion")
+	}
+	unsettled.Address = address
+	return unsettled, nil
+}
+
+func unsettledToBinMap(b Unsettled) aero.BinMap {
+	return aero.BinMap{
+		"Address":   b.Address,
+		"Unsettled": b.Unsettled,
 	}
 }
