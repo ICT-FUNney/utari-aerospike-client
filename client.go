@@ -20,10 +20,12 @@ type IAeroSpikeClinet interface {
 	PutBlock(Block) error
 	PutTransaction(Transaction) error
 	PutBalance(string, float64) error
+	PutUnsettled(string, float64) error
 	GetBlock(string) (Block, error)
 	GetTransactionByInput(string) ([]Transaction, error)
 	GetTransactionByOutput(string) ([]Transaction, error)
 	GetBalanceByAddress(string) (float64, error)
+	GetUnsettled(string) (float64, error)
 	DeleteBlock(string) error
 	DeleteTransaction(string) error
 	CreateIndex(CreateIndexOptions) error
