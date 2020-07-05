@@ -1,7 +1,5 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/ICT-FUNney/utari-aerospike-client v0.0.0-20200622081240-d8d1757f6177 h1:JV2n9JJLz+evorEcaLNiDFHIAW8lpdOakA8SNV0Szec=
-github.com/ICT-FUNney/utari-aerospike-client v0.0.0-20200622081240-d8d1757f6177/go.mod h1:YUBMv4ZPtGvUTFdhc/cPvtC+0ceVk3ObJJk4OYDZ+dE=
 github.com/aerospike/aerospike-client-go v1.39.0 h1:4TBtyTU3qcJfhuVPDAkwjX7/x2D+aR6NDQPXBAPjuWI=
 github.com/aerospike/aerospike-client-go v3.0.3+incompatible h1:UEuPV2ldaVyUeBphqKvz7JkM0mMSKImwA7BNGJ64Vu4=
 github.com/aerospike/aerospike-client-go v3.0.3+incompatible/go.mod h1:zj8LBEnWBDOVEIJt8LvaRvDG5ARAoa5dBeHaB472NRc=
@@ -55,8 +53,6 @@ github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7J
 github.com/onsi/gomega v1.10.1 h1:o0+MgICZLuZ7xjH7Vx6zS/zcu93/BEp1VwkIW1mEXCE=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
-github.com/youtangai/utari-aerospike-client v0.0.0-20181203050121-289f0ef01e55 h1:YiC8Czt9OQZgbUAVU/xZ6+mDIuuflY8vM3tICneTiFg=
-github.com/youtangai/utari-aerospike-client v0.0.0-20181203050121-289f0ef01e55/go.mod h1:Ls9ec/KtBmeB8YBbP94ta6Yb7OXGteo2x6f6JPQ5QGU=
 github.com/yuin/gopher-lua v0.0.0-20200603152657-dc2b0ca8b37e h1:oIpIX9VKxSCFrfjsKpluGbNPBGq9iNnT9crH781j9wY=
 github.com/yuin/gopher-lua v0.0.0-20200603152657-dc2b0ca8b37e/go.mod h1:gqRgreBUhTSL0GeU64rtZ3Uq3wtjOa/TB2YfrtkCbVQ=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
