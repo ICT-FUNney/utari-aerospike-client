@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	aero "github.com/youtangai/utari-aerospike-client"
+	aero "github.com/ICT-FUNney/utari-aerospike-client"
 )
 
 var (
