@@ -133,7 +133,7 @@ func (a aeroSpikeClient) GetTransactionByInput(input string) ([]Transaction, err
 	)
 
 	// where Input = input を表す
-	stmt.Addfilter(aero.NewEqualFilter("Input", input))
+	stmt.SetFilter(aero.NewEqualFilter("Input", input))
 
 	// レコードの取得
 	recordSet, err := a.client.Query(nil, stmt)
@@ -174,7 +174,7 @@ func (a aeroSpikeClient) GetTransactionByOutput(output string) ([]Transaction, e
 	)
 
 	// where Input = input を表す
-	stmt.Addfilter(aero.NewEqualFilter("Output", output))
+	stmt.SetFilter(aero.NewEqualFilter("Output", output))
 
 	// レコードの取得
 	recordSet, err := a.client.Query(nil, stmt)
