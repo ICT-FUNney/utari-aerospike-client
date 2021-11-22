@@ -22,6 +22,7 @@ type IAeroSpikeClinet interface {
 	PutBalance(string, float64) error
 	PutUnsettled(string, float64) error
 	GetBlock(string) (Block, error)
+	GetBlocks() ([]Block, error)
 	GetTransactionByInput(string) ([]Transaction, error)
 	GetTransactionByOutput(string) ([]Transaction, error)
 	GetBalanceByAddress(string) (float64, error)
@@ -115,6 +116,49 @@ func (a aeroSpikeClient) GetBlock(hash string) (Block, error) {
 	}
 
 	return block, nil
+}
+
+// GetBlocks []Blockを取得するメソッドです
+func (a aeroSpikeClient) GetBlocks() ([]Block, error) {
+	// select * from namespace.Blockを表す
+	stmt := aero.NewStatement(
+		GetAerospikeNamespace(),
+		GetAerospikeBlockTable(),
+		"Id",
+		"Version",
+		"Prehash",
+		"Merkleroot",
+		"Timestamp",
+		"Level",
+		"Nonce",
+		"Size",
+		"Txcount",
+		"TxidList",
+	)
+
+	// レコードの取得
+	record, err := a.client.Query(nil, stmt)
+	if err != nil {
+		return []Block{}, err
+	}
+
+
+	var blocks []Block
+	for result := range record.Results() {
+		if result.Err != nil {
+			return []Block{}, result.Err
+		}
+
+		// binmap to block
+		block, err := binMapToBlock(result.Record)
+		if err != nil {
+			return []Block{}, err
+		}
+		blocks= append(blocks, block)
+	}
+
+
+	return blocks, nil
 }
 
 // GetTransactionByInputは 引数であるinputとレコードのInputが一致する Transactionを1つ以上取得するメソッドです
